@@ -1,5 +1,6 @@
 package kwic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pipeline {
@@ -8,18 +9,18 @@ public class Pipeline {
 	private OutputSink sink;
 	private List<Filter> filters;
 	
-	public void start() {
-		
-		pump.run();
-		sink.run();
-		
-		for (Filter filter : filters) {
-			filter.run();
-		}
+	public Pipeline() {
+		filters = new ArrayList<Filter>();
 	}
 	
-	public void stop() {
+	public void start() {
 		
+		new Thread(pump).start();
+		new Thread(sink).start();
+		
+		for (Filter filter : filters) {
+			new Thread(filter).start();
+		}
 	}
 	
 	// a method that blocks until pipeline is done
