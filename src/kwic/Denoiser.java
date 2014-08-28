@@ -44,7 +44,7 @@ public class Denoiser extends Filter {
 	}
 	
 	private boolean isNoiseWord(String word) {
-		return noiseWords.contains(word);
+		return noiseWords.contains(word.toLowerCase());
 	}
 	
 	public void setNoiseWords(Set<String> noiseWords) {

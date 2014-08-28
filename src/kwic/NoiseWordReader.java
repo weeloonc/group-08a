@@ -28,7 +28,7 @@ public class NoiseWordReader {
 		try (BufferedReader reader = Files.newBufferedReader(filePath, CHARSET)) {
 			String line = reader.readLine();
 			while (line != null) {
-				result.add(line);
+				result.add(line.toLowerCase());
 				line = reader.readLine();
 			}
 		}
