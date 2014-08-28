@@ -1,5 +1,7 @@
 package kwic;
 
+import java.io.IOException;
+
 public abstract class Filter implements Runnable {
 
 	private volatile boolean isRunning;
@@ -20,6 +22,12 @@ public abstract class Filter implements Runnable {
 		
 		while (isRunning) {
 			transform();
+		}
+		
+		try {
+			output.closeWriter();
+		} catch (IOException ex) {
+			ex.printStackTrace();
 		}
 	}
 	
