@@ -2,7 +2,7 @@ package kwic;
 
 public abstract class Filter implements Runnable {
 
-	private boolean isRunning;
+	private volatile boolean isRunning;
 	private Pipe input;
 	private Pipe output;
 	
@@ -23,7 +23,7 @@ public abstract class Filter implements Runnable {
 		}
 	}
 	
-	public final void stop() {
+	public final void interrupt() {
 		isRunning = false;
 	}
 	
