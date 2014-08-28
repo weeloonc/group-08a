@@ -17,8 +17,7 @@ public class Alphabetizer extends Filter {
 	protected void transform() {
 		try {
 			String str = getInput().readLine();
-			
-			while (!str.equals("")) {  // empty string signal end of input
+			while (!str.equals(Pipe.END_OF_INPUT)) {
 				insertIntoOutputStore(str);
 				str = getInput().readLine();
 			}

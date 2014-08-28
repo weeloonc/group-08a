@@ -23,18 +23,28 @@ public class InputPump implements Runnable {
 	}
 	
 	private void readInput() {
-		
-		Scanner sc = new Scanner(System.in);
-		String line = sc.nextLine();
-		
-		while (line != "") {
-			try {
-				output.writeLine(line);
-				line = sc.nextLine();
-			} catch (IOException ex) {
-				// TODO Auto-generated catch block
-				ex.printStackTrace();
+		try {
+			Scanner sc = new Scanner(System.in);
+			boolean hasNextLine = true;
+			
+			while (hasNextLine) {
+				String line = sc.nextLine();
+				
+				if (line.equals(Pipe.END_OF_INPUT)) {
+					output.writeLine(Pipe.END_OF_INPUT);
+					hasNextLine = false;
+					
+				} else {
+					output.writeLine(line);
+				}
 			}
+			
+			sc.close();
+			output.closeWriter();
+			
+		} catch (IOException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
 		}
 	}
 
