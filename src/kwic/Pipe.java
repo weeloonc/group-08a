@@ -8,6 +8,9 @@ import java.io.PipedWriter;
 
 public class Pipe {
 
+	public static final String END_OF_INPUT = "";
+	private static final char PRINTABLE_CHAR = 32;
+
 	private PipedReader out;
 	private PipedWriter in;
 	
@@ -20,8 +23,10 @@ public class Pipe {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		for (char c = (char) out.read(); c != '\n'; c = (char) out.read()) {
-			sb.append(c);
+		int c = out.read();
+		while (c >= PRINTABLE_CHAR) {
+			sb.append((char) c);
+			c = out.read();
 		}
 		
 		return sb.toString();
@@ -30,6 +35,10 @@ public class Pipe {
 	public void writeLine(String str) throws IOException {
 		in.write(str + "\n");
 		in.flush();
+	}
+	
+	public void closeWriter() throws IOException {
+		in.close();
 	}
 
 }
