@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.Set;
 
 public class KwicApp {
+	
+	private static final String WELCOME_MSG =
+			"Test test, type your titles and stop by typing empty line";
 
 	public static void main(String[] args) {
 		
@@ -18,16 +21,10 @@ public class KwicApp {
 	}
 	
 	public void start(String filename) {
-		
 		try {
-			Set<String> noiseWords = null;
+			displayWelcomeMsg(WELCOME_MSG);
 			
-			if (filename != null) {
-				noiseWords = getNoiseWords(filename);
-			}
-			
-			// prints some message
-			
+			Set<String> noiseWords = getNoiseWords(filename);
 			Pipeline pipeline = createPipeline(noiseWords);
 			//pipeline.start();
 			
@@ -41,7 +38,16 @@ public class KwicApp {
 		}
 	}
 	
+	private void displayWelcomeMsg(String msg) {
+		System.out.println(msg);
+	}
+	
 	private Set<String> getNoiseWords(String filename) throws IOException {
+		
+		if (filename == null) {
+			return null;
+		}
+		
 		return new NoiseWordReader().readNoiseWords(filename);
 	}
 	
