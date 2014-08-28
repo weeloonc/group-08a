@@ -22,13 +22,18 @@ public class Denoiser extends Filter {
 			String firstWord = getFirstWord(str);
 			boolean isEmptyString = str.equals("");
 			
-			if (!isEmptyString && !isNoiseWord(firstWord)) {
+			if (isEmptyString) {  // empty string signal end of input
+				interrupt();
+				return;
+			}
+			
+			if (!isNoiseWord(firstWord)) {
 				getOutput().writeLine(str);
 			}
 			
 		} catch (IOException ex) {
 			ex.printStackTrace();
-			//maybe should interrupt thread here
+			interrupt();
 		}
 	}
 	

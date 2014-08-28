@@ -18,15 +18,17 @@ public class Alphabetizer extends Filter {
 		try {
 			String str = getInput().readLine();
 			
-			while (str != null) {  // let's assume that readline give null to signal nothing to read
+			while (!str.equals("")) {  // empty string signal end of input
 				insertIntoOutputStore(str);
 				str = getInput().readLine();
 			}
 			
 			outputToPipe();
+			interrupt();
 			
 		} catch (IOException ex) {
-			
+			ex.printStackTrace();
+			interrupt();
 		}
 	}
 	
@@ -43,11 +45,14 @@ public class Alphabetizer extends Filter {
 	}
 	
 	private void outputToPipe() throws IOException {
+		
 		for (Map.Entry<String, Integer> entry : outputStore.entrySet()) {
 			for (int i = 0; i < entry.getValue(); i++) {
 				getOutput().writeLine(entry.getKey());
 			}
 		}
+		
+		getOutput().writeLine("");  // signal end of output
 	}
 
 }
