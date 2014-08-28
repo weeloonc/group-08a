@@ -1,5 +1,7 @@
 package kwic;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.PipedReader;
 import java.io.PipedWriter;
@@ -27,6 +29,7 @@ public class Pipe {
 	
 	public void writeLine(String str) throws IOException {
 		in.write(str + "\n");
+		in.flush();
 	}
 
 }
