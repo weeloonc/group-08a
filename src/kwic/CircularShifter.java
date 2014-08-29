@@ -19,7 +19,6 @@ public class CircularShifter extends Filter {
 			
 			String[] words = getInput().readLine().split("\\s");  // spliting line with whitespaces
 			
-			
 			for (int i = 0; i < words.length; i++){
 				if (words[i].equals("")) continue;
 				q.add(words[i]); //add the words without spaces into the q
