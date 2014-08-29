@@ -17,6 +17,8 @@ public class CircularShifter extends Filter {
 	protected void transform() {
 		try {
 			
+			q.clear();
+			
 			String line = getInput().readLine();
 			
 			if (line.equals(Pipe.END_OF_INPUT)) {
@@ -32,7 +34,7 @@ public class CircularShifter extends Filter {
 				q.add(words[i]); //add the words without spaces into the q
 			}
 			
-			for (int j = 0; j < q.size()-1; j++){
+			for (int j = 0; j < q.size(); j++){
 				String tempRemovedWord = q.poll();
 				StringBuilder processedWord = new StringBuilder();
 				q.add(tempRemovedWord); //add the first word to the back of the q and remove the first word

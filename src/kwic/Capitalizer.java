@@ -22,8 +22,6 @@ public class Capitalizer extends Filter {
 				return;
 			} 
 			
-			//String[] words = line.split("\\s");  // spliting line with whitespaces
-			
 			//make the first letter upper case
 			line = line.substring(0, 1).toUpperCase() + line.substring(1).toLowerCase();
 			getOutput().writeLine(line);

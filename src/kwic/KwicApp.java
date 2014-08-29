@@ -60,7 +60,7 @@ public class KwicApp {
 		denoiser = new Denoiser(pipes[1], pipes[2]);
 		denoiser.setNoiseWords(noiseWords);
 		pipeline.addFilter(denoiser);
-		pipeline.addFilter(new Capitalizer(pipes[2], pipes[3]));
+		//pipeline.addFilter(new Capitalizer(pipes[2], pipes[3]));
 		pipeline.addFilter(new Alphabetizer(pipes[2], pipes[3]));
 		pipeline.setSink(new OutputSink(pipes[3]));
 		
