@@ -7,6 +7,8 @@ public class KwicApp {
 	
 	private static final String WELCOME_MSG =
 			"Test test, type your titles and stop by typing empty line";
+	
+	public static final String ERROR_MSG = "An error has occurred";
 
 	public static void main(String[] args) {
 		
@@ -22,24 +24,16 @@ public class KwicApp {
 	
 	public void start(String filename) {
 		try {
-			displayWelcomeMsg(WELCOME_MSG);
-			
 			Set<String> noiseWords = getNoiseWords(filename);
 			Pipeline pipeline = createPipeline(noiseWords);
-			//pipeline.start();
 			
-			// wait for pipeline to finish
-			// pipeline.waitForDone
-			// pipeline.stop()
+			displayWelcomeMsg(WELCOME_MSG);
+			pipeline.start();
 			
 		} catch (IOException ex) {
-			System.err.println("An error has occurred.");
+			System.err.println(ERROR_MSG);
 			System.exit(1);
 		}
-	}
-	
-	private void displayWelcomeMsg(String msg) {
-		System.out.println(msg);
 	}
 	
 	private Set<String> getNoiseWords(String filename) throws IOException {
@@ -61,16 +55,20 @@ public class KwicApp {
 			pipes[i] = new Pipe();
 		}
 		
-		pipeline.setPump(new InputPump(pipes[0]));
+		pipeline.setPump(new InputPump(pipes[1]));
 		//pipeline.addFilter(new CircularShifter(pipes[0], pipes[1]));
 		denoiser = new Denoiser(pipes[1], pipes[2]);
 		denoiser.setNoiseWords(noiseWords);
 		pipeline.addFilter(denoiser);
 		//pipeline.addFilter(new Capitalizer(pipes[2], pipes[3]));
-		//pipeline.addFilter(new Alphabetizer(pipes[3], pipes[4]));
-		pipeline.setSink(new OutputSink(pipes[4]));
+		pipeline.addFilter(new Alphabetizer(pipes[2], pipes[3]));
+		pipeline.setSink(new OutputSink(pipes[3]));
 		
 		return pipeline;
+	}
+	
+	private void displayWelcomeMsg(String msg) {
+		System.out.println(msg);
 	}
 
 }

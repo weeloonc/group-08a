@@ -20,9 +20,9 @@ public class Denoiser extends Filter {
 		try {
 			String str = getInput().readLine();
 			String firstWord = getFirstWord(str);
-			boolean isEmptyString = str.equals("");
 			
-			if (isEmptyString) {  // empty string signal end of input
+			if (str.equals(Pipe.END_OF_INPUT)) {
+				getOutput().writeLine(Pipe.END_OF_INPUT);
 				interrupt();
 				return;
 			}
