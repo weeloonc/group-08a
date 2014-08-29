@@ -56,7 +56,7 @@ public class KwicApp {
 		}
 		
 		pipeline.setPump(new InputPump(pipes[1]));
-		//pipeline.addFilter(new CircularShifter(pipes[0], pipes[1]));
+		pipeline.addFilter(new CircularShifter(pipes[0], pipes[1]));
 		denoiser = new Denoiser(pipes[1], pipes[2]);
 		denoiser.setNoiseWords(noiseWords);
 		pipeline.addFilter(denoiser);

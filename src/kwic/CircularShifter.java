@@ -17,7 +17,15 @@ public class CircularShifter extends Filter {
 	protected void transform() {
 		try {
 			
-			String[] words = getInput().readLine().split("\\s");  // spliting line with whitespaces
+			String line = getInput().readLine();
+			
+			if (line.equals(Pipe.END_OF_INPUT)) {
+				getOutput().writeLine(Pipe.END_OF_INPUT);
+				interrupt();
+				return;
+			} 
+			
+			String[] words = line.split("\\s");  // spliting line with whitespaces
 			
 			for (int i = 0; i < words.length; i++){
 				if (words[i].equals("")) continue;
