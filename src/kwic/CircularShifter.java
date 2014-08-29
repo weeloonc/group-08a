@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class CircularShift extends Filter {
+public class CircularShifter extends Filter {
 	 
 	private Queue<String> q; 
 
-	public CircularShift(Pipe input, Pipe output) {
+	public CircularShifter(Pipe input, Pipe output) {
 		super(input, output);
 		q =  new LinkedList<String>();
 	}
