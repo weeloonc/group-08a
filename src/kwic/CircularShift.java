@@ -27,14 +27,16 @@ public class CircularShift extends Filter {
 			
 			for (int j = 0; j < q.size()-1; j++){
 				String tempRemovedWord = q.poll();
-				String processedWord = "";
+				StringBuilder processedWord = new StringBuilder();
 				q.add(tempRemovedWord); //add the first word to the back of the q and remove the first word
 
 				for (String s : q){ //iterate the queue and make it into a word
-					processedWord += s + " ";
+					processedWord.append(s);
+					processedWord.append(" ");
 				}
 
-				getOutput().writeLine(processedWord);
+				int endIndex = processedWord.length() - 1;  // trim last space
+				getOutput().writeLine(processedWord.substring(0, endIndex));
 			}
 			
 		} catch (IOException e) {
