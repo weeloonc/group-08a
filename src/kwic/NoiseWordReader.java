@@ -14,7 +14,7 @@ import java.util.HashSet;
 
 public class NoiseWordReader {
 	
-	private static final Charset CHARSET = StandardCharsets.UTF_8;
+	private static final Charset CHARSET = StandardCharsets.US_ASCII;
 	
 	public Set<String> readNoiseWords(String filename) throws IOException {
 		

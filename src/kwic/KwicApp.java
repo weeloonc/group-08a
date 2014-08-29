@@ -55,14 +55,14 @@ public class KwicApp {
 			pipes[i] = new Pipe();
 		}
 		
-		pipeline.setPump(new InputPump(pipes[1]));
+		pipeline.setPump(new InputPump(pipes[0]));
 		pipeline.addFilter(new CircularShifter(pipes[0], pipes[1]));
 		denoiser = new Denoiser(pipes[1], pipes[2]);
 		denoiser.setNoiseWords(noiseWords);
 		pipeline.addFilter(denoiser);
-		//pipeline.addFilter(new Capitalizer(pipes[2], pipes[3]));
-		pipeline.addFilter(new Alphabetizer(pipes[2], pipes[3]));
-		pipeline.setSink(new OutputSink(pipes[3]));
+		pipeline.addFilter(new Capitalizer(pipes[2], pipes[3]));
+		pipeline.addFilter(new Alphabetizer(pipes[3], pipes[4]));
+		pipeline.setSink(new OutputSink(pipes[4]));
 		
 		return pipeline;
 	}
