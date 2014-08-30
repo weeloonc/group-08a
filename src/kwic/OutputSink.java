@@ -33,7 +33,6 @@ public class OutputSink implements Runnable {
 			
 		} catch (IOException ex) {
 			System.err.println(KwicApp.ERROR_MSG);
-			ex.printStackTrace();
 		}
 	}
 

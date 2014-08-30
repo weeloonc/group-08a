@@ -26,7 +26,6 @@ public class Alphabetizer extends Filter {
 			interrupt();
 			
 		} catch (IOException ex) {
-			ex.printStackTrace();
 			interrupt();
 		}
 	}
@@ -51,7 +50,7 @@ public class Alphabetizer extends Filter {
 			}
 		}
 		
-		getOutput().writeLine("");  // signal end of output
+		getOutput().writeLine(Pipe.END_OF_INPUT);  // signal end of output
 	}
 
 }

@@ -4,11 +4,10 @@ import java.io.IOException;
 import java.util.Set;
 
 public class KwicApp {
-	
-	private static final String WELCOME_MSG =
-			"Test test, type your titles and stop by typing empty line";
-	
+
 	public static final String ERROR_MSG = "An error has occurred";
+	private static final String WELCOME_MSG = "Hello KwicApper, " +
+			"type your list of titles and end off by hitting <ENTER> key.";
 
 	public static void main(String[] args) {
 		

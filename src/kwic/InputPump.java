@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class InputPump implements Runnable {
 	
-	private volatile boolean isRunning;
 	private Pipe output;
 	
 	public InputPump(Pipe output) {
@@ -14,12 +13,7 @@ public class InputPump implements Runnable {
 
 	@Override
 	public final void run() {
-		isRunning = true;
 		readInput();
-	}
-	
-	public final void interrupt() {
-		isRunning = false;
 	}
 	
 	private void readInput() {
@@ -43,8 +37,8 @@ public class InputPump implements Runnable {
 			output.closeWriter();
 			
 		} catch (IOException ex) {
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
+			System.err.println(KwicApp.ERROR_MSG);
+			System.exit(1);
 		}
 	}
 

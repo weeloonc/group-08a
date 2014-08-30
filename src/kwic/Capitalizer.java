@@ -6,7 +6,6 @@ public class Capitalizer extends Filter {
 
 	public Capitalizer(Pipe input, Pipe output) {
 		super(input, output);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -27,8 +26,6 @@ public class Capitalizer extends Filter {
 			getOutput().writeLine(line);
 			
 		} catch (IOException e) {
-			
-			e.printStackTrace();
 			interrupt();
 		}
 

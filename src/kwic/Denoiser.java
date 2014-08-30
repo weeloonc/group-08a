@@ -32,7 +32,6 @@ public class Denoiser extends Filter {
 			}
 			
 		} catch (IOException ex) {
-			ex.printStackTrace();
 			interrupt();
 		}
 	}
